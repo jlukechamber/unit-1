@@ -131,5 +131,5 @@ function debugAjax(){
 		}).then(debugCallback);
 		}	
 ;
-
+//run initialize function when the DOM is loaded.
 document.addEventListener('DOMContentLoaded', initialize)
