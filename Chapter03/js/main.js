@@ -1,5 +1,7 @@
 function initialize() {
 	cities();
+    debugAjax(); 
+//called both the cities and debugAjax functions in initialize
 };
 
 function cities() {
@@ -113,5 +115,21 @@ function addEvents() {
 	table.addEventListener("click", clickme)
 
 };
+
+function debugCallback(response){
+	document.querySelector("#mydiv").insertAdjacentHTML('beforeend', 'GeoJSON data: ' + JSON.stringify(response))
+};
+//the multiple instances of "stringify" queryselector were unnecessary. The one within the function with the parameter
+//response.
+//the function fetches the data from the geojson file, then after the data is loaded converts to .json, then runs the debugCallback function.
+
+function debugAjax(){
+	
+	fetch("data/MegaCities.geojson")
+		.then(function(response){
+			return response.json();
+		}).then(debugCallback);
+		}	
+;
 
 document.addEventListener('DOMContentLoaded', initialize)
